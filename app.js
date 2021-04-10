@@ -1,10 +1,14 @@
 require('dotenv').config();
 
-const app = require('express')();
+const express = require('express');
+const app = express();
 const config = require('./config');
+const path = require('path');
+
+app.use("/assets", express.static(path.join(__dirname + "/assets")));
 
 app.get("", (req, res) => {
-    res.send("HELLO WORLD");
+    res.sendFile(path.join(__dirname + "/index.html"));
 });
 
 app.listen(config.PORT, () => {
